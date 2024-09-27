@@ -14,26 +14,33 @@
 
 A fast and feature-rich implementation of an ESP8266/ESP32 webserver to control NeoPixel (WS2812B, WS2811, SK6812) LEDs or also SPI based chipsets like the WS2801 and APA102!
 
-# Changes in this Branch
+# What's different in this Fork
 
 This branch adds support for the KSZ8863 Ethernet Phy.
 This has an integrated ethernet switch, making it possible to build WLED devices with two ethernet ports.
 
-With this feature you can dasy-chain multiple WLED devices.
+With this feature you can dasy-chain multiple WLED devices without the need of a central switch.
+
+## I2C
+
+The custom ksz8863 driver (https://github.com/Bauteiltoeter/arduino-esp32-ksz8863) uses I2C communication with Wire.h! 
+This might interfere with your application if it's also trying to use I2C!
+
 
 ## Hardware
 Connect the KSZ8863 to your ESP32 as following:
 
-ESP32 -> KSZ8863
-IO0   -> REFCLKI_3 (23) & REFCLKO_3 (17)
-IO21  -> CRS_DV (16)
-IO27  -> TX_EN  (25)
-IO25  -> TXD0   (29)
-IO26  -> TXD1   (28)
-IO19  -> RXD0   (20)
-IO22  -> RXD1   (19)
-IO14  -> SCL    (36)
-IO15  -> SDA    (37)
+| ESP32 | KSZ8863                |  PIN  |
+|-------|------------------------|------ |
+| IO0   | REFCLKI_3 & REFCLKO_3  | 23&17 |
+| IO21  | CRS_DV                 | 16    |
+| IO27  | TX_EN                  | 25    |
+| IO25  | TXD0                   | 29    |
+| IO26  | TXD1                   | 28    |
+| IO19  | RXD0                   | 20    |
+| IO22  | RXD1                   | 19    |
+| IO14  | SCL (Ext. pullup!)     | 36    |
+| IO15  | SDA (Ext. pullup!)     | 37    |
 
 ## ⚙️ Features
 - WS2812FX library with more than 100 special effects  
