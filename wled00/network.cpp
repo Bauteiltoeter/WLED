@@ -154,6 +154,7 @@ const ethernet_settings ethernetBoards[] = {
     15,
     ETH_PHY_KSZ8863,
     ETH_CLOCK_GPIO0_IN
+  }
 };
 #endif
 
